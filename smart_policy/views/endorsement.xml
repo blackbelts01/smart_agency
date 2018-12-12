@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record id="my_view_for_endorsement_form_kmlo1" model="ir.ui.view">
+            <field name="name">endorsement Form</field>
+            <field name="model">endorsement.edit</field>
+            <field name="arch" type="xml">
+                <form string="my endorsement form">
+                    <header>
+                        <button name="create_endorsement" string="Convert to Policy" class="oe_highlight" type="object"
+                        attrs="{'invisible': [('converted', '=', True)]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="number_policy"/>
+                            <field name="last_policy" invisible="1"/>
+                            <field name="number_edit"/>
+                            <field name="reasonedit"/>
+                            <field name="issue_date"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="converted" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="my_view_for_endorsement_tree" model="ir.ui.view">
+            <field name="name">endorsement</field>
+            <field name="model">endorsement.edit</field>
+            <field name="arch" type="xml">
+                <tree string="my_tree_for_endorsement">
+                    <field name="number_policy"/>
+                    <field name="number_edit"/>
+                    <field name="issue_date"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="my_action_for_Endorsement" model="ir.actions.act_window">
+            <field name="name">Endorsement</field>
+            <field name="res_model">endorsement.edit</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="view_type">form</field>
+            <!--&lt;!&ndash;<field name="search_view_id" ref="my_view_search_view"/>&ndash;&gt;-->
+            <!--<field name='domain'>[('salesperson','=',uid)]</field>-->
+            <!--<field name="context" >{'search_default_by_salesperson':1}</field>-->
+        </record>
+    </data>
+</odoo>

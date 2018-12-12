@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+
+        <menuitem id="claim_menu" name="Smart Claim" web_icon="smart_claim,static/description/icon.png"/>
+
+        <menuitem id="claim_parent_view_menu" name="Claims" parent="claim_menu" sequence="0"/>
+        <menuitem id="claim_view_menu" name="Claim" parent="claim_parent_view_menu"
+                  action="claim_view_action" sequence="0"/>
+
+        <menuitem id="settlements_view_menu" name="Settlements" parent="claim_menu" sequence="1"/>
+        <menuitem id="settlements_vehicle_view_menu" name="Vehicle" parent="settlements_view_menu"
+                  action="action_settlement_vehicle" sequence="0"/>
+        <menuitem id="settlements_person_view_menu" name="Person" parent="settlements_view_menu"
+                  action="action_settlement_person" sequence="1"/>
+        <menuitem id="settlements_cargo_view_menu" name="Cargo" parent="settlements_view_menu"
+                  action="action_settlement_cargo" sequence="2"/>
+        <menuitem id="payment_view_menu" name="Payments" parent="claim_menu"
+                  action="action_payment" sequence="2"/>
+
+    </data>
+</odoo>

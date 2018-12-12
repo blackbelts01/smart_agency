@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_endorsement_edit_general,access.endorsement.edit,model_endorsement_edit,base.group_user,1,1,1,1
+access_policy_risk_general,access.policy.risk,model_policy_risk,base.group_user,1,1,1,1
+access_policy_broker_general,access.policy.broker,model_policy_broker,base.group_user,1,1,1,1
+access_covers_lines_general,access.covers.lines,model_covers_lines,, 1,0,0,0
+access_insurance_share_commission_general,access.insurance.share.commission,model_insurance_share_commission,base.group_user,1,1,1,1
+access_installment_installment_general,access.installment.installment,model_installment_installment,base.group_user,1,1,1,1
+access_insurance_line_business_general,access.insurance_line_business,model_insurance_line_business,base.group_user,1,1,1,1
+access_insurance_product_general,access.insurance.product,model_insurance_product,base.group_user,1,1,1,1
+access_product_claim_action_general,access.product.claim.action,model_product_claim_action,base.group_user,1,1,1,1
+access_insurance_product_coverage_general,access.insurance.product.coverage,model_insurance_product_coverage,base.group_user,1,1,1,1
+access_insurance_product_brokerage_general,access.insurance.product.brokerage,model_insurance_product_brokerage,base.group_user,1,1,1,1
+access_insurance_setup_general,access.insurance.setup,model_insurance_setup,base.group_user,1,1,1,1
+access_insurance_setup_item_general,access.insurance_setup_item,model_insurance_setup_item,base.group_user,1,1,1,1
+
+
+
+

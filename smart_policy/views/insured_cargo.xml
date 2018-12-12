@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="my_view_for_cargo_risks_tree" model="ir.ui.view">
+            <field name="name">New risks</field>
+            <field name="model">policy.risk</field>
+            <field name="arch" type="xml">
+                <tree string="my_tree_for_cargo">
+                    <field name="From"/>
+                    <field name="To"/>
+                    <field name="cargo_type"/>
+                    <field name="weight"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_for_insured_Cargo" model="ir.actions.act_window">
+            <field name="name">Cargo Risks</field>
+            <field name="res_model">policy.risk</field>
+            <field name="view_mode">tree,graph,search</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="my_view_for_cargo_risks_tree"/>
+            <field name='domain'>[('test','=','cargo')]</field>
+            <!--<field name="context">{'create': False}</field>-->
+        </record>
+    </data>
+</odoo>

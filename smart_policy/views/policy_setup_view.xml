@@ -1,0 +1,312 @@
+<odoo>
+
+    <!--policy info-->
+    <record model="ir.ui.view" id="tree_line_business">
+        <field name="name">tree.line.business</field>
+        <field name="model">insurance.line.business</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="list">
+                <field name="insurance_type"/>
+                <field name="line_of_business" />
+                <field name="object"/>
+                <field name="desc"/>
+                <field name="income_account"/>
+                <field name="expense_account"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="form_line_business">
+        <field name="name">form.line.business</field>
+        <field name="model">insurance.line.business</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Idea form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="insurance_type"/>
+                            <field name="line_of_business" placeholder="Line of Business" string="Name"/>
+                            <field name="object"/>
+                            <field name="desc"/>
+                            <field name="income_account"/>
+                            <field name="expense_account"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="insurance_line_business_action">
+        <field name="name">Line of Business</field>
+        <field name="res_model">insurance.line.business</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Line of Business
+            </p>
+        </field>
+    </record>
+
+    <!--Product info-->
+    <record model="ir.ui.view" id="tree_product">
+        <field name="name">tree.product</field>
+        <field name="model">insurance.product</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="list">
+                <field name="product_name"/>
+                <field name="insurer"/>
+                <field name="line_of_bus"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="form_product">
+        <field name="name">form.product</field>
+        <field name="model">insurance.product</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Idea form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="insurer" context="{'default_customer': 0,'default_supplier': 1, 'default_insurer_type': 1,'default_company_type': 'company','default_is_company': 1}"/>
+                            <field name="line_of_bus"/>
+                            <field name="product_name"/>
+                            <field name="commission_per"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Coverage Definition">
+                                <field name="coverage"/>
+                            </page>
+                            <page string="Brokerage">
+                                <field name="brokerage"/>
+                            </page>
+                            <page string="Claim Action">
+                                <field name="claim_action">
+                                    <tree editable="1">
+                                        <field name="action"/>
+                                        <field name="comments"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="insurance_Products_action">
+        <field name="name">Product</field>
+        <field name="res_model">insurance.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Products
+            </p>
+        </field>
+    </record>
+
+
+    <!--coverage info-->
+    <record model="ir.ui.view" id="tree_coverage">
+        <field name="name">tree.coverage</field>
+        <field name="model">insurance.product.coverage</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Idea list">
+                <field name="Name"/>
+                <field name="defaultvalue"/>
+                <field name="required"/>
+                <field name="deductible"/>
+                <field name="limittotal"/>
+                <field name="limitone"/>
+                <field name="readonly"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="form_coverage">
+        <field name="name">form.coverage</field>
+        <field name="model">insurance.product.coverage</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Idea form">
+                <group colspan="4">
+                    <separator string="Coverage" colspan="2"/>
+                    <field name="Name"/>
+                    <field name="defaultvalue"/>
+                    <field name="required"/>
+                    <field name="deductible"/>
+                    <field name="limittotal"/>
+                    <field name="limitone"/>
+                    <field name="readonly"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="insurance_coverage_action">
+        <field name="name">Coverage</field>
+        <field name="res_model">insurance.product.coverage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Coverages
+            </p>
+        </field>
+    </record>
+    <!--brokerage info-->
+    <record model="ir.ui.view" id="tree_brokerage">
+        <field name="name">tree.brokerage</field>
+        <field name="model">insurance.product.brokerage</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Idea list">
+                <field name="datefrom"/>
+                <field name="dateto"/>
+                <field name="basic_commission"/>
+                <field name="complementary_commission"/>
+                <field name="early_collection"/>
+                <field name="fixed_commission"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="form_brokerage">
+        <field name="name">form.Brokerage</field>
+        <field name="model">insurance.product.brokerage</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Idea form">
+                <sheet>
+                    <div class="oe_title">
+                            <h2 class="o_row">
+                                <div>
+                                    <label for="basic_commission" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="basic_commission" widget="integer"/>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="complementary_commission" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="complementary_commission" widget="integer"/>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="early_collection" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="early_collection" widget="integer"/>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                            </h2>
+                    </div>
+                    <div class="oe_title">
+                            <h2 class="o_row">
+                                <div>
+                                    <label for="fixed_commission" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="fixed_commission"/>
+                                        <field name="company_currency_id"/>
+                                    </div>
+                                </div>
+                            </h2>
+                    </div>
+                    <group>
+                        <field name="datefrom"/>
+                        <field name="dateto"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="insurance_brokerage_action">
+        <field name="name">brokerage</field>
+        <field name="res_model">insurance.product.brokerage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Brokerage
+            </p>
+        </field>
+    </record>
+    <record id="view_claim_action_wizard_form" model="ir.ui.view">
+        <field name="name">Claim Action form</field>
+        <field name="model">product.claim.action</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="action"/>
+                    <field name="comments"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="claim_action_wizard_wizard"
+        name="claim_action"
+        src_model="product.claim.action"
+        res_model="product.claim.action"
+        view_mode="form"
+        target="new"/>
+
+    <record model="ir.ui.view" id="tree_setup">
+        <field name="name">tree.insurance.setup</field>
+        <field name="model">insurance.setup</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="list">
+                <field name="setup_key"/>
+                <field name="setup_id"/>
+                <field name="setup_item"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="form_insurance_setup">
+        <field name="name">form.insurance.setup</field>
+        <field name="model">insurance.setup</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Idea form">
+                <group colspan="2">
+                    <field name="setup_key"/>
+                    <field name="setup_id"/>
+                    <field name="setup_item">
+                        <tree  editable="1">
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="insurance_setup_action">
+        <field name="name">Insurance Setup</field>
+        <field name="res_model">insurance.setup</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create Insurance Setup
+            </p>
+        </field>
+    </record>
+    <record id="view_setup_item_wizard_form" model="ir.ui.view">
+        <field name="name">Insurance Setup Item Form</field>
+        <field name="model">insurance.setup.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                   <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="view_setup_item_wizard"
+        name="view_setup_item"
+        src_model="insurance.setup.item"
+        res_model="insurance.setup.item"
+        view_mode="form"
+        target="new"/>
+</odoo>

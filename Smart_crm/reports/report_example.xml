@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<report id="crm_report"
+                string="PaySlip Report"
+                model="crm.lead"
+                report_type="qweb-pdf"
+                name="crm__black_belts.crm_report_document"
+        />
+
+
+
+</odoo>

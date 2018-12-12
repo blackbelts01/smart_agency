@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+
+        <menuitem id="policy_menu" name="Smart Policy" web_icon="smart_policy,static/description/icon.png"/>
+            <!--<menuitem id="ibs_sales_menu" name="Sales" parent="policy_menu" sequence="3" />-->
+        <!--<menuitem id="leads_view_menu" name="Leads" parent="policy_menu"-->
+                  <!--action="crm.crm_lead_all_leads" sequence="0" />-->
+        <!--<menuitem id="opportunities_view_menu" name="Opportunities" parent="ibs_sales_menu"-->
+                  <!--action="Smart_crm.ibs_crm_lead_opportunities" sequence="1"/>-->
+        <!--<menuitem id="channel_view_menu" name="Sales Channels" parent="ibs_sales_menu"-->
+        <!--action="sales_team.crm_team_salesteams_act" sequence="2"/>-->
+        <!--<menuitem id="Print_out_production_view_menu" name="Print out" parent="ibs_sales_menu"/>-->
+        <!--<menuitem id="configuration_production_view_menu" name="Configuration" parent="ibs_sales_menu"/>-->
+
+        <menuitem id="partners_views_menu" name="Partners"
+                  parent="policy_menu" sequence="1"/>
+        <menuitem id="customers_view_menu" name="Customer" parent="partners_views_menu"
+                  action="action_customer_view"/>
+        <menuitem id="insurer_view_menu" name="Insurer" parent="partners_views_menu"
+                  action="action_insurer_view"/>
+        <menuitem id="agent_view_menu" name="Agent" parent="partners_views_menu"
+                  action="action_agent_view"/>
+        <menuitem id="print_out_partners_view_menu" name="Print out" parent="partners_views_menu"/>
+        <menuitem id="configuration_partners_view_menu" name="Configuration" parent="partners_views_menu"/>
+
+
+        <menuitem id="policy_management_views_menu" name="Policies"
+                  parent="policy_menu" sequence="0" />
+        <menuitem id="policy_view_menu" name="Policy" parent="policy_management_views_menu"
+                  action="policy_form_action" sequence="0"/>
+        <menuitem id="endorsement_view_menu" name="Endorsement" parent="policy_management_views_menu"
+                  action="my_action_for_Endorsement" sequence="1"/>
+        <menuitem id="renewal_view_menu" name="Renewal" parent="policy_management_views_menu"
+                  action="action_renewal_policy" sequence="2"/>
+
+        <menuitem id="menu_insured" name="Insured" parent="policy_menu" sequence="2"/>
+        <menuitem id="menu_insured_vehicle" name="Insured Vehicle" parent="menu_insured"
+                  action="action_for_insured_vehicle" sequence="0"/>
+        <menuitem id="menu_insured_Person" name="Insured Person" parent="menu_insured"
+                  action="action_for_insured_Person" sequence="1"/>
+        <menuitem id="menu_insured_Cargo" name="Insured Cargo" parent="menu_insured"
+                  action="action_for_insured_Cargo" sequence="2"/>
+
+        <menuitem id="collection_view_menu" name="Collections" parent="policy_menu" sequence="3"/>
+        <menuitem id="installments_view_menu" name="Installments" parent="collection_view_menu" sequence="0"
+                  action="installments_line_action"/>
+
+        <!--Configuration-->
+        <menuitem id="configuration_view_menu" name="Configuration" parent="policy_menu" sequence="4" />
+        <menuitem id="line_of_business_view_menu" name="Line of Business" parent="configuration_view_menu"
+                  action="insurance_line_business_action" sequence="0"/>
+        <menuitem id="product_view_menu" name="Products" parent="configuration_view_menu"
+                  action="insurance_Products_action" sequence="1"/>
+        <menuitem id="setup_item_view_menu" name="Setup Items" parent="configuration_view_menu"
+                  action="insurance_setup_action" sequence="2"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,638 @@
+<odoo>
+    <data>
+        <!---edit opportuinty-->
+
+
+        <!--<record model="ir.ui.view" id="crm__lead_form_view_sale">-->
+        <!--<field name="model">crm.lead</field>-->
+        <!--<field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<xpath expr="//button[@name='384']" position="attributes">-->
+        <!--<attribute name="invisible">1</attribute>-->
+        <!--</xpath>-->
+        <!--<xpath expr="//button[@name='385']" position="attributes">-->
+        <!--<attribute name="invisible">1</attribute>-->
+        <!--</xpath>-->
+        <!--</field>-->
+        <!--</record>-->
+
+        <record model="ir.ui.view" id="crm__lead_form_view">
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+
+                <header>
+                    <button name="create_policy" string="Convert Policy" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('active','=',False), ('probability', '!=', 100)]}"/>
+                    <button name="print_opp" string="Print" type="object"  class="btn-primary o_sale_print" />
+                    <button name="send_mail_template" string="Send by Mail" type="object"  class="oe_highlight" />
+                </header>
+                <!--<notebook >-->
+
+                <!--<page string="Underwritting/Survey">-->
+                <!--<label for="my_notes"/>-->
+                <!--<field name="my_notes" />-->
+
+                <!--</page>-->
+                <!--</notebook>-->
+
+                <!-- crm main form -->
+                <field name="partner_id" position="attributes" >
+                    <attribute name="context">{'own_customer_only':1}</attribute>
+                </field>
+                <xpath expr="//field[@name='planned_revenue']/parent::div" position="attributes">
+                    <attribute name="invisible">1</attribute>>
+                </xpath>
+                <xpath expr="//field[@name='probability']/parent::div" position="attributes">
+                    <attribute name="invisible">1</attribute>>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="style">width: 50% !important;</attribute>>
+                </xpath>
+                <xpath expr="//label[@for='planned_revenue']" position="attributes">
+                    <attribute name="invisible">1</attribute>>
+                </xpath>
+                <xpath expr="//label[@for='probability']" position="attributes">
+                    <attribute name="invisible">1</attribute>>
+                </xpath>
+                <xpath expr="/form/sheet/group[1]" position="after">
+                    <group  attrs="{'invisible': ['|',('validate_underwr', '!=', True)]}">
+                        <field name="my_notes" />
+                    </group>
+                    <group attrs="{'invisible': ['|',('validate_contact', '!=', True)]}" >
+                        <group>
+                            <field name="partner_name"/>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            </div>
+                            <field name="website" widget="url" placeholder="e.g. www.odoo.com"/>
+                        </group>
+
+                        <group>
+                            <label for="contact_name"/>
+                            <div class="o_row">
+                                <field name="contact_name"/>
+                                <field name="title" placeholder="Title" domain="[]" options="{&quot;no_open&quot;: True}"/>
+                            </div>
+                            <field name="function"/>
+                            <field name="mobile"/>
+                            <field name="opt_out"/>
+                        </group>
+                        <group string="Marketing">
+                            <field name="campaign_id"/>
+                            <field name="medium_id"/>
+                            <field name="source_id"/>
+                        </group>
+                        <group string="Misc" name="Misc">
+                            <field name="day_open" groups="base.group_no_one"/>
+                            <field name="day_close" groups="base.group_no_one"/>
+                            <field name="referred"/>
+                            <field name="type" invisible="1"/>
+                        </group>
+                    </group>
+                </xpath>
+
+                <!--//label[@for='module_account_followup']"-->
+                <xpath expr="/form/sheet/group[1]/group[4]" position="after">
+                    <group style="width: 50% !important;" attrs="{'invisible': ['|', ('active','=',False), ('probability', '!=', 100)]}">
+                        <field name="policy_number"  style="font-size: 15px;"/>
+                        <field name="selected_coverage" style="font-size: 15px;" widget="selection" />
+
+                        <!--<div >-->
+                        <!--<h2 class="o_row" >-->
+                        <!--<div>-->
+                        <!--<label for="policy_number" class="oe_edit_only" style="font-weight:bold"/>-->
+                        <!--<div class="o_row">-->
+                        <!--<field name="policy_number"  style="font-size: 15px;"/>-->
+                        <!--<span class="oe_grey" style="font-size: 15px;"> and </span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<label for="selected_coverage" class="oe_edit_only" style="font-weight:bold"/>-->
+                        <!--<div class="o_row">-->
+                        <!--<field name="selected_coverage" style="font-size: 15px;" widget="selection" />-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</h2>-->
+                        <!--</div>-->
+                    </group>
+                    <br/>
+
+                </xpath>
+
+                <xpath expr="/form/sheet/group[1]/group[1]" position="before">
+                    <br/>
+                    <div>
+                        <div class="o_row">
+                            <label for="c_type" style="font-weight:bold"/>
+                            <div class="o_row" style="width: 100% !important;">
+                                <field name="c_type"  style="width:100%; font-size: 15px"/>
+                                <field name="ammount" style="width:100px; font-size: 15px"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <h2 class="o_row" >
+                            <div>
+                                <label for="planned_revenue" class="oe_edit_only" style="font-weight:bold"/>
+                                <div class="o_row">
+                                    <field name="company_currency" invisible="1" style="font-size: 15px;"/>
+                                    <field name="planned_revenue" widget="monetary" options="{'currency_field': 'company_currency'}" style="font-size: 15px;"/>
+                                    <span class="oe_grey"> at </span>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="probability" class="oe_edit_only" style="font-weight:bold"/>
+                                <div class="o_row">
+                                    <field name="probability" widget="integer" style="font-size: 15px;"/>
+                                    <span>%</span>
+                                </div>
+                            </div>
+                        </h2>
+                    </div>
+
+                    <group>
+
+
+                    </group>
+
+
+                    <!--<label string="policyNo and Propsal" style="font-weight:bold" attrs="{'invisible': ['|', ('active','=',False), ('probability', '!=', 100)]}"/>-->
+                    <!--<div class="o_row" style="width: 47% !important;" attrs="{'invisible': ['|', ('active','=',False), ('probability', '!=', 100)]}" >-->
+
+                    <!--<field name="policy_number"  style="width:20%; font-size: 15px"/>-->
+                    <!--&lt;!&ndash;<label for="selected_coverage" style="font-weight:bold" attrs="{'invisible': ['|', ('active','=',False), ('probability', '!=', 100)]}"/>&ndash;&gt;-->
+                    <!--<field name="selected_coverage" style="width:20%; font-size: 15px" />-->
+                    <!--&lt;!&ndash;<field name="ammount" style="width:100px; font-size: 15px"/>&ndash;&gt;-->
+                    <!--</div>-->
+
+
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[2]" position="attributes">
+
+                    <attribute name="invisible">1</attribute>>
+
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[1]" position="attributes">
+
+                    <attribute name="invisible">1</attribute>>
+
+                </xpath>
+
+                <xpath expr="/form/sheet/group[1]" position="before">
+                    <br/>
+                    <template>
+                        <script type="text/javascript">
+                            var buttonsMenu = document.getElementById("menu");
+                            console.log(buttonsMenu);
+                            var buttonsList = buttonsMenu.getElementsByClassName("o_invisible_modifier")[0].style="display: inline-block !important;background:#fff;color:#777;border: 1px solid #ddd;border-bottom: none; ";
+                        </script>
+                    </template>
+                    <div class="btn-group btn-group-justified" id="menu">
+                        <div class="btn-group" >
+                            <button name="validate_basic_opp" string="Basic Info" type="object" style="color: #337AB7; background: white;border-bottom: 1px solid #ddd;" class="btn btn-primary" attrs="{'invisible': [('validate_basic_mark_opp', '=', True)]}" />
+                        </div>
+                        <div class="btn-group" >
+                            <button name="validate_risk_opp" string="Risk" type="object" style="color: #337AB7; background: white;border-bottom: 1px solid #ddd;" class="btn btn-primary"  attrs="{'invisible': [('validate_risk_mark_opp', '=', True)]}"/>
+                        </div>
+                        <div class="btn-group" >
+                            <button name="validate_proposal" string="Proposals" type="object" style="color: #337AB7; background: white;border-bottom: 1px solid #ddd;" class="btn btn-primary" attrs="{'invisible': [('validate_prop', '=', True)]}" />
+                        </div>
+                        <div class="btn-group" >
+                            <button name="validate_proposal_line" string="Proposal Lines" type="object" style="color: #337AB7; background: white;border-bottom: 1px solid #ddd;" class="btn btn-primary" attrs="{'invisible': [('validate_prop_line', '=', True)]}" />
+                        </div>
+                        <div class="btn-group" >
+                            <button name="validate_underwritting" string="U/W-Survey" type="object" style="color: #337AB7; background: white;border-bottom: 1px solid #ddd;" class="btn btn-primary" attrs="{'invisible': [('validate_underwr', '=', True)]}" />
+                        </div>
+                        <div class="btn-group" >
+                            <button name="validate_continfo" string="Contact Info" type="object" style="color: #337AB7; background: white;border-bottom: 1px solid #ddd;" class="btn btn-primary" attrs="{'invisible': [('validate_contact', '=', True)]}" />
+                        </div>
+                    </div>
+
+                </xpath>
+
+
+
+
+
+
+
+
+
+
+                <!--new policy-->
+
+                <field name="date_deadline" position="after">
+                    <field name="oppor_type"/>
+                    <field name="create_uid" readonly='True'/>
+
+                    <field name="test" style="width:20%; font-size: 15px"  invisible="1"  />
+
+                </field>
+                <field name="team_id" position="after">
+                    <field name="test1"  invisible="1" />
+                    <field name="validate_basic_mark_opp"  invisible="1" />
+                    <field name="validate_risk_mark_opp"  invisible="1" />
+                    <field name="validate_prop"  invisible="1" />
+                    <field name="validate_prop_line"  invisible="1" />
+                    <field name="validate_underwr"  invisible="1" />
+                    <field name="validate_contact"  invisible="1" />
+                    <!--<field name="validate_basic_mark_opp"  invisible="1" />-->
+                    <!--<field name="test1"  invisible="1" />-->
+
+                    <field name="insurance_type" />
+                    <field name="LOB"   />
+                </field>
+                <field name="tag_ids" position="after">
+                    <field name="policy_number"   />
+                    <field name="ins_type"/>
+
+                    <!--<td></td>-->
+                    <!--<div class="o_row">-->
+                    <!--&lt;!&ndash;<label string="Term"/>&ndash;&gt;-->
+                    <!--<label string="duration"/>-->
+                    <!--<field name="duration_no"/>-->
+                    <!--<label string="type"/>-->
+                    <!--<field name="duration_type"/>-->
+                    <!--</div>-->
+
+
+                    <label string="Duration"/>
+                    <div class="o_row">
+                        <field name="duration_no"/>
+                        <field name="duration_type"/>
+                    </div>
+
+                </field>
+                <xpath expr="/form/sheet/group[1]" position="after">
+                    <!--<group string="Risks" attrs="{'invisible': ['|',('validate_risk_mark_opp', '!=', True)]}">-->
+                    <field name="objectrisks" attrs="{'invisible': ['|',('validate_risk_mark_opp', '!=', True)]}" >
+                        <tree>
+                            <!--<field name="risk"/>-->
+                            <field name="risk_description"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <!--<field name="risk"/>-->
+                                <field name="risk_description" invisible="1"/>
+                                <field name="risks_crm" invisible="1"/>
+                                <field name="type_risk" invisible="1" />
+
+                            </group>
+
+                            <group string="Vehicle" attrs="{'invisible': ['|',('type_risk', '!=', 'vehicle')]}" >
+                                <field name="car_tybe" widget="selection"/>
+                                <field name="Man" widget="selection"/>
+                                <field name="model" widget="selection"/>
+                                <field name="motor_cc"/>
+                                <field name="year_of_made"/>
+                                <field name="plate_no"/>
+                                <field name="chassis_no"/>
+                                <field name="engine"/>
+                            </group>
+                            <group string="Person" attrs="{'invisible': ['|',('type_risk', '!=', 'person')]}">
+                                <field name="name"/>
+                                <field name="DOB"/>
+                                <field name="job" widget="selection"/>
+                            </group>
+                            <group string="Cargo"  attrs="{'invisible': ['|',('type_risk', '!=', 'cargo')]}">
+                                <field name="From"  />
+                                <field name="To"  />
+                                <field name="cargo_type" />
+                                <field name="weight"   />
+                            </group>
+                            <group string="Location"  attrs="{'invisible': ['|',('type_risk', '!=', 'location')]}">
+                                <field name="address"  />
+                                <field name="type"  />
+                            </group>
+
+
+                        </form>
+                    </field>
+                    <!--<label string="Proposals" style="font-size: 30px; color:#2e70b8 " attrs="{'invisible': ['|',('test', '=', False)]}" ></label>-->
+                    <field name="proposal_opp"  attrs="{'invisible': ['|',('validate_prop', '!=', True)]}" >
+                        <tree>
+                            <field name="Company"/>
+                            <field name="product_pol"/>
+                            <field name="proposal_desc"/>
+                            <field name="premium"/>
+                        </tree>
+                    </field>
+
+
+
+
+                    <!--<field name="set_covers" invisible="1"/>-->
+                    <!--<button name="covers_button" string="Validate" class="oe_highlight" type="object"  attrs="{'invisible': ['|',('test', '=', False)]}"/><br/>-->
+                    <!--<label string="Proposal Lines" style="font-size: 30px; color:#2e70b8 " attrs="{'invisible': ['|',('test', '=', False)]}" ></label>-->
+                    <field name="coverage_line"  attrs="{'invisible': [('validate_prop_line', '!=', True)]}">
+
+                        <tree editable="bottom">
+                            <field name="proposal_id"  style="color:#2e70b8 ;"/>
+                            <field name="insurer" invisible="1"/>
+                            <field name="product" invisible="1"/>
+                            <field name="risk_id_covers" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="covers" options="{'no_create': True, 'no_open': True}"/>
+                            <!--<field name="risk_desc"/>-->
+                            <field name="check" invisible="1"/>
+                            <field name="sum_insured" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>
+                            <field name="rate" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>
+                            <field name="net_premium" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>
+                            <field name="limitone" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>
+                            <field name="limittotal" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>
+                            <field name="deductible" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>
+
+                        </tree>
+                        <!--</tree>-->
+                        <!--<form>-->
+                        <!--<group>-->
+                        <!--<field name="proposal_id"/>-->
+                        <!--<field name="risk_id_covers"/>-->
+                        <!--&lt;!&ndash;<field name="risk_desc"/>&ndash;&gt;-->
+                        <!--<field name="covers"/>-->
+                        <!--<field name="covers_crm" invisible="1"  />-->
+
+                        <!--</group>-->
+                        <!--</form>-->
+                        <!--<form>-->
+                        <!--<group>-->
+                        <!--<field name="proposal_id"/>-->
+                        <!--<field name="risk_id_covers"/>-->
+                        <!--<field name="risk_desc"/>-->
+                        <!--<field name="covers"/>-->
+                        <!--<field name="covers_crm" invisible="1"  />-->
+
+                        <!--</group>-->
+                        <!--</form>-->
+                    </field>
+
+
+
+
+                    <!--</group>-->
+                </xpath>
+
+
+                <xpath expr="/form/sheet/group[1]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('validate_basic_mark_opp','!=',True)]}</attribute>>
+                </xpath>
+
+                <!--<xpath expr="/form/sheet/group[1]" position="attributes" >-->
+                <!--<attribute name="attrs">{'invisible': [('validate_basic_mark_opp', '!=', True)]}</attribute>-->
+                <!--</xpath>-->
+                <!--&lt;!&ndash;<field name="test" style="width:20%; font-size: 15px"  invisible="1"  />&ndash;&gt;-->
+                <!--&lt;!&ndash;<group string="Insured"  attrs="{'invisible': ['|',('test', '=', False)]}">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<group attrs="{'invisible': ['|',('ins_type', '!=', 'Group')]}">&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<field name="group" />&ndash;&gt;-->
+                <!--&lt;!&ndash;</group>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<group >&ndash;&gt;-->
+                <!--&lt;!&ndash;<button name="Insured_button" string="Add Risk Details" class="oe_highlight" type="object" attrs="{'invisible': [('active','=',False)]}"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</group>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<label string="Proposals" style="font-size: 30px; color:#2e70b8 " attrs="{'invisible': ['|',('test', '=', False)]}" ></label>&ndash;&gt;-->
+                <!--&lt;!&ndash;<field name="proposal_opp"  attrs="{'invisible': ['|',('test', '=', False)]}" >&ndash;&gt;-->
+                <!--&lt;!&ndash;<tree>&ndash;&gt;-->
+                <!--&lt;!&ndash;<field name="Company"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<field name="product_pol"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<field name="proposal_desc"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<field name="premium"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</tree>&ndash;&gt;-->
+                <!--&lt;!&ndash;</field>&ndash;&gt;-->
+
+
+                <!--</xpath>-->
+
+                <!--<xpath expr="/form/sheet/group[1]" position="after">-->
+                <!--<field name="test" style="width:20%; font-size: 15px"  invisible="1"  />-->
+                <!--<group string="Proposals"  attrs="{'invisible': ['|',('test', '=', False)]}">-->
+                <!--<group attrs="{'invisible': ['|',('ins_type', '!=', 'Group')]}">-->
+
+                <!--<field name="group" />-->
+                <!--</group>-->
+
+
+                <!--<field name="proposal_opp" >-->
+                <!--<tree>-->
+
+                <!--&lt;!&ndash;<field name="proposal_id"/>&ndash;&gt;-->
+                <!--<field name="Company"/>-->
+                <!--<field name="product_pol"/>-->
+                <!--<field name="proposal_desc"/>-->
+
+
+                <!--<field name="premium"/>-->
+                <!--</tree>-->
+                <!--</field>-->
+
+                <!--</group>-->
+
+                <!--</xpath>-->
+
+                <!--<xpath expr="/form/sheet/group[2]" position="after">-->
+                <!--<button name="covers_button" string="Validate" class="oe_highlight" type="object"  attrs="{'invisible': ['|',('test', '=', False)]}"/>-->
+
+                <!--<field name="set_covers" invisible="1"/>-->
+                <!--<field name="id" invisible="1"/>-->
+                <!--<group string="Proposal lines"   >-->
+                <!--</group>-->
+
+                <!--<field name="coverage_line"  attrs="{'invisible': ['|',('set_covers', '=', False)]}">-->
+
+                <!--<tree editable="bottom">-->
+                <!--<field name="proposal_id"  style="color:Blue;"/>-->
+                <!--<field name="insurer" invisible="1"/>-->
+                <!--<field name="product" invisible="1"/>-->
+                <!--<field name="risk_id_covers" options="{'no_create': True, 'no_open': True}"/>-->
+                <!--&lt;!&ndash;<field name="risk_desc"/>&ndash;&gt;-->
+                <!--<field name="check" invisible="1"/>-->
+                <!--<field name="sum_insured" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>-->
+                <!--<field name="rate" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>-->
+                <!--<field name="net_premium" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>-->
+                <!--<field name="limitone" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>-->
+                <!--<field name="limittotal" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>-->
+                <!--<field name="deductible" attrs="{'readonly': [('check', '=', True)]}" force_save="1"/>-->
+
+
+                <!--</field>-->
+
+
+                <!--</xpath>-->
+
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+        <!--1111111-->
+
+        <!---create opportuinty-->
+        <record model="ir.ui.view" id="crm__lead_form_create_view">
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_create_opportunity_simplified"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <label for="c_type"/>
+                    <div class="o_row" >
+                        <field name="c_type"  style="width:30%%;"/>
+                        <field name="ammount" style="font-size: 15px"/>
+                    </div>
+
+                    <field name="insurance_type"  style="width:30%%;"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- search view -->
+        <record id="view_crm_order_inherit_search" model="ir.ui.view">
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="context">{"search_default_unassigned":1}</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//filter[@name='assigned_to_me']"  position="attributes">
+                    <attribute name="string">Assigned to me</attribute>
+                    <attribute name="domain">[('user_id', '=', uid ),('create_uid','!=', uid)]</attribute>
+                </xpath>
+
+                <xpath expr="//filter[@name='unassigned']"  position="attributes">
+                    <attribute name="string">Dispatched By me</attribute>
+                    <attribute name="domain">[('create_uid','=', uid),('user_id', '!=', uid )] </attribute>
+                    <!-- <filter string="Network" name="network" domain="[('create_uid','=', uid),('user_id', '!=', uid ) ]"/> -->
+                </xpath>
+                <xpath expr="//filter[@name='unassigned']"  position="after">
+
+                    <filter string="Owned by me" name="own" domain="[('create_uid','=', uid),('user_id', '=', uid )]"/>
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <!-- Adding user form -->
+
+        <!--
+                <record model="ir.ui.view" id="res_user_create_county_view">
+                    <field name="model">res.users</field>
+                    <field name="inherit_id" ref="base.view_users_form"/>
+                    <field name="arch" type="xml">
+
+
+                        &lt;!&ndash;  <xpath expr="//field[@name='name']" position="before"> &ndash;&gt;
+                        <label for="name" position="before">
+                            <div style="width:50%%;">
+                                <label for="firstname" />
+                                <field name="firstname" />
+                            </div>
+                            <div style="width:50%%;">
+                                <label for="lastname"/>
+                                <field name="lastname" />
+                            </div>
+
+                            <div >
+                                <field name="space"/>
+                                <field name="space"/>
+                            </div>
+
+                            <div class="o_row" style="width:70% !important;"  >
+                                <label for="country"/>
+                                <field name="country"/>
+                                <label for="agency"/>
+                                <field name="agency"/>
+                            </div>
+                            <div  style="width:40%%;">
+                                <label for="userid"/>
+                                <field name="userid" readonly="True"/>
+                            </div>
+
+                        </label>
+
+                    </field>
+                </record>
+        -->
+
+        <record id="ibs_crm_case_tree_view_oppor" model="ir.ui.view">
+            <field name="name">crm.lead.tree.opportunity</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <tree string="Opportunities" decoration-bf="message_needaction==True" decoration-muted="probability == 100" decoration-danger="activity_date_deadline and (activity_date_deadline &lt; current_date)">
+                    <field name="insurance_type" string="Type"/>
+                    <field name="LOB" string="LOB"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="name" string="Opportunity"/>
+                    <field name="term"/>
+                    <field name="planned_revenue" sum="Expected Revenues" string="Expected Premium"/>
+                    <field name="probability" avg="Avg. of Probability"/>
+                    <field name="stage_id"/>
+                    <field name="activity_date_deadline" invisible="1"/>
+                    <field name="activity_summary" invisible="1"/>
+                    <field name="medium_id" invisible="1"/>
+                    <field name="campaign_id" invisible="1"/>
+                    <field name="source_id" invisible="1"/>
+                    <field name="team_id"/>
+                    <field name="user_id"/>
+                    <field name="referred" invisible="1"/>
+                    <field name="priority" invisible="1"/>
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="probability" invisible="1"/>
+                    <field name="write_date" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="ibs_crm_lead_opportunities">
+            <field name="name">Opportunities</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">kanban,tree,graph,pivot,form,calendar</field>
+            <field name="domain">[('type','=','opportunity')]</field>
+            <field name="context">{
+                'default_type': 'opportunity',
+                'default_user_id': uid
+                }
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_ibs_crm_lead_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ibs_crm_case_tree_view_oppor"/>
+            <field name="act_window_id" ref="ibs_crm_lead_opportunities"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_ibs_crm_lead_form">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="crm__lead_form_view"/>
+            <field name="act_window_id" ref="ibs_crm_lead_opportunities"/>
+        </record>
+        <!--<menuitem id="opportunities_view_menu" name="Opportunities" parent="crm.crm_menu_root"-->
+        <!--sequence="1"/>-->
+        <!--<menuitem id="sales_menu" name="Sales" parent="crm.crm_menu_root" sequence="1" />-->
+        <menuitem id="opportunities_view_menu" name="Opportunities" parent="crm.crm_menu_pipeline"
+                  action="ibs_crm_lead_opportunities" sequence="1"/>
+
+
+        <record model="ir.ui.menu" id="crm.res_partner_menu_crm">
+        <field name="action" eval="False"/>
+        </record>
+        <record model="ir.ui.menu" id="sale_crm.sale_order_menu_quotations_crm">
+        <field name="action" eval="False"/>
+        </record>
+         <record model="ir.ui.menu" id="crm.crm_menu_pipeline">
+             <field name="name">Sales</field>
+        </record>
+
+
+    </data>
+</odoo>

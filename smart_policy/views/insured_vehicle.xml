@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="my_view_for_vehicle_risks_tree" model="ir.ui.view">
+            <field name="name">risks</field>
+            <field name="model">policy.risk</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="car_tybe"/>
+                    <field name="motor_cc"/>
+                    <field name="year_of_made"/>
+                    <field name="model"/>
+                    <field name="Man"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="action_for_insured_vehicle" model="ir.actions.act_window">
+            <field name="name">Vehicle Risks</field>
+            <field name="res_model">policy.risk</field>
+            <field name="view_mode">tree,graph,search</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="my_view_for_vehicle_risks_tree"/>
+            <field name='domain'>[('test','=','vehicle')]</field>
+            <field name="context">{'create': False,'edit':False}</field>
+        </record>
+
+    </data>
+</odoo>

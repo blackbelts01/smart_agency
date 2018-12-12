@@ -1,0 +1,911 @@
+we not need to do onchange
+do you extend the lead view on xml ?
+yes
+
+show me please
+now try to upgrade module and check
+
+we need to try for demo user (admin can see every thing)
+ok
+
+now ok
+check with different users
+ok
+ok great now complete
+next issue
+the top field in the form i want to resize to fit currency width
+let me show
+now show you xml
+
+
+
+first show me on browser which fiedl width you want to increase
+i'm not getting your point
+which field
+
+do you want to increase width ?
+no decrease to fit 3 char of currency
+ok
+in other word to fit content
+done
+
+so is there fix for 3 char in that field ?
+y
+ok
+upgrade module
+ok
+
+now i want label'Expected premium in currency' in same font as expected preimum in company currency
+let show on screen
+upgrade mod
+it is not bold
+ok
+ok thanks for today we will arrange another call
+Thanks alot
+
+ok
+
+you can see my screen?
+
+yes
+
+ok the first issue
+
+in the field Sales person we have made a domain filter to it it has different bussiness logic
+administrator should see all users
+
+what ?
+
+what you have did for this ?
+
+ok i have onchange function return domain
+
+ok.
+can you give me 15 min so i can take a lunch . lol
+i will ping you on whatsapp after lunch
+ok?
+
+ok
+thanks disconnecting now
+so other sales person what are value shows on dropdown
+?
+ok himself and admin
+
+ok
+and admin can see all uses under drpodown
+
+yes
+ok
+
+n
+note the function is working but i have problem on onchange
+what problem ?
+
+you see the problem
+?
+so its working for demo user. its shows demo and admin so its a correct
+ok but in allready created record before the function created the first time demo see all
+like this
+
+ok
+we need to inherit other odoo base method so let me check at my side
+so wait for a few min please
+ok but if there is a way in xml domain filters
+no we can't get through xml
+ok
+
+why this openerp?
+
+odoo working also
+i know but good method is use odoo
+
+ok
+restart and update
+
+
+ok but
+also test with create new records fr
+
+ok done but what is the problem of the other function
+what do you mean by problem of the other function?
+my created one
+
+that function call only when you chnage the user_id
+so first time its not working
+got my point ?
+because first time that function not call.
+once you change the user_id then that function call and apply domain
+so it works after change of user once
+got it ?
+
+ok but on create new record work fine
+means ?
+on create new record  work fine
+
+yes this function working fine on new record creation.
+
+ok
+
+now i have another issue but let me send an important mail and back to you
+
+ok
+
+ok i want a security access , the user see the record assigned to him and created by himself
+
+Hi
+yes show me where
+
+ok skip this now i will call you about it later now i want to increase this feild size
+update
+
+
+ok i will manage it and i will call you after the holidays thanks alot
+your welcome
+
+
+
+Hi
+Hello. How are you?
+fine thanks
+my first question is i want to make my own custom dashboard
+ok
+
+i will see you something
+
+i want this menu to be the first app page
+which
+
+give me name because i can't ssee your pointer
+
+you can see it now
+disc
+ok
+
+i'm not getting you first point/ can you please explain?
+
+i want to make my openning page contain dashboard having the
+installed apps
+
+means
+
+ all menu list ?
+
+ yes
+
+which theme your are using ?
+
+i do not know
+.
+that is not a simple thing to update.
+you  have to sahre that module so i can do and search on that for this point.
+
+what about my custom dashboard means?
+
+Hi
+
+are you here
+?might be your internet is very slow
+
+Hi!!!!
+
+yes
+
+
+ok
+hi
+
+ooo
+
+
+my custom dashboard means
+you tell me what yocustomdashboard?u want to show on your
+
+you can see
+
+
+Disc menu list
+
+tell me please in more details
+
+crm icon ,setting ,...
+no we can't add that dashboard
+that is menu items
+
+ok i want this menu items to be on the openning page
+currently it showing discuss menu instead of you want to list of all menu? right ?
+
+ok
+as i said that is not a small thing. that i have to check. so ifyou want then you avhve to share that customer module that you are using for theme
+
+
+ok what do you mean share that customer module?
+sorry not customer its custom module
+
+ok how i can change the opening page
+as i said that is not a simple thing to change
+i have to checck code
+
+ok
+
+
+the second question i want to make this view being better
+
+i want to change it
+
+hi
+so what you want to change
+
+this menulist
+ hi
+
+
+
+can you s
+
+c youplease explain well
+
+
+the menu list of login user which describe (documentaion ,support)
+
+
+hi
+
+
+
+hi
+
+
+
+where are you?
+
+
+
+hi
+
+
+
+hi
+
+
+are you here?
+
+
+
+hi
+Hi
+
+first issues in create users form i want the name be generated i do it but on save dont save
+
+which nam
+
+
+question on create i can acess self fields
+
+
+
+no.
+
+
+
+hi
+yes
+
+i want to try this
+
+
+
+hi
+Hi
+ok
+
+
+hi
+hi
+
+the first one
+
+as yesterday question in computed field userid
+
+
+
+
+
+
+
+
+
+
+
+
+my firts issues
+
+i want the user can inly access its customer or its partner
+
+hi
+yes
+
+
+then we hride search_read method
+what
+
+we have to override searh_read method
+ok to what
+ok moment elt me give you an example
+ok
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        return super(ResUsers,self).search(args, offset=offset, limit=limit, order=order, count=count)
+
+     you can override this method
+     ok
+     you have to pass context from particular action that contaxt you get her eand you can write code for specific mnu only
+     got pleaseit ?
+     got it ?
+
+     no please show me an example
+
+
+     check above that is method that we can override
+     ok but how i can get all customer
+     means ?not gettign yourquestion
+
+
+     ok i will inherit res.partner
+     ok?
+     yes
+     then i will ovveride this function on it
+     yes
+
+     what about the context
+
+     show me that menuthat you have to apply this restrictioon.
+     means
+     show me that menu. in which menu you want to set restrction
+     ok
+     is that menu is default of odoo ? or you have addded that menu?
+     defult of odoo
+     ok
+now inerhit res.partner
+
+restart odoo
+okat
+e
+try again
+ok but in admin do not work
+yes because that we have not done
+tell me for other user. is it working fine ?
+
+
+
+not working fine
+hi
+hi
+
+i want explain some thing to you
+
+yes please
+
+update this
+update and test
+
+but still customers menu items when clicked show me all customers
+
+because its a admin user
+
+ok
+hi
+
+hi
+
+name_get
+
+hi
+what ?
+are you busy now?
+ok
+
+ok. can we continue on tomorrow
+will check this issue tomorrow
+ok?
+ok? no problem but early than today
+
+yes that is good for me as well
+ok thanks alot?
+ok see you tomorrow
+ok
+
+
+hi
+still not working?
+ok
+
+
+ok
+
+hi
+hi
+you see me?
+
+yes
+
+
+ok i have an issue i want to show view depends on selection (dynamic view)
+
+ok
+d
+hi
+now ok
+
+please explain
+
+hi
+
+
+
+hi
+we have to continue on yesterday issue ?
+ok
+the issue is here
+
+
+
+still th
+ey es i know that
+but do not user object in class method model field name because its a default odoo/python so it may causes an issue
+got thi point ?
+yes thanks
+
+now back to our issue
+i
+
+hi
+hi
+do you have idea regardign javascript
+no i am embedded system python not odoo also ....
+but for this we have to write code on javascript
+for what
+for invisible column of grid based on condition
+ok i will be intersted
+great
+
+so i will also check for it and let you know
+ok?
+ok for how much time you will check
+its need time not sure because its a R&D.
+ok
+i have another solutionyes
+that will good
+i tell me
+i will have model for each object(car,person,cargobut that will take a much time
+ok
+i am vedddry interseso
+high
+are you heret ime your screen is freez
+ok
+so what solution you want to go throu
+java script solution
+okk
+i will look into it and tell you
+ok?
+ok when?
+might be tomottow
+ok
+i will wait you
+ok
+thanks alot
+hi
+k
+
+yes some
+ok
+so i can show it based on conditionwant
+is this right?
+yes that is ok
+ok but i want to know about the java script solution
+t
+ hi
+ hi
+
+ first explain what are yhe columns you wanto to hide and which condition
+ okPlea
+
+ Please restart odoo
+please restar odoo
+
+
+
+not work
+sorry, I forgot version, this is for version 10. let me prepare for version11
+ok its another question
+urgentve 500
+yes
+can i make grid bivot make columns rows and make rows columns
+not understand
+toggle the grid view
+can you show one example.
+motor cc model this defult view of grid ?
+want to show border in rows and columns ?
+no i want to replace the rows and columns
+you got this point?
+you want to show pivot view ?
+actually i want to replace columns in place of rows
+oh, its difficult to show all rows in columns. For example, if you have 5000 rows, than what ?
+ok let discuss this point when i reach now when you will prepare version 11
+Ok. Once will prepare it, I will ping you.
+ok thanks alot
+
+
+
+
+
+
+hi
+hi
+
+the first issue let me show you
+what is second point ?
+what the solution of the first?
+i'm not getting
+ok it is a one 2many relation ok?
+ok
+all record of the object car should be showed in the tree of proposal?
+ok
+in list view we can not display record of one2many or many2many it wull display only rorords if count
+ok
+
+i mean that each car has many hig
+shat is car
+i don;t know car
+first let me know ever
+ car is object model ok?
+ make it compute field
+ ok?
+hi
+
+for hide one2many column based on parent field i have find something if you want thehn i show you
+ok javascript solution?
+that javascipy already written on odoo 11 base code
+one moment let me give you an example
+attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])], 'readonly': [('qty_delivered_updateable', '=', False)]}"
+
+this is example that you can write in xml
+ok i will try but now i have an urgent task
+yes
+in each object like car if i press the list record will show me the proposal of this record
+
+main problem is i can't see your coursor
+so not able to see to where you are demostating
+so check for enabling pointer
+so i can see your pointer
+ok
+on;y benifits name ?
+no and value also
+how ?
+give me exmaple how look
+like in record
+insurer product premium nour vds savdv avsdv
+nour and the following are benfits
+it just a namewan
+ok depend on field in tob model
+means ?
+exlain well
+ok each product has many benfits
+doinfef emorment
+sho me on browser
+ok let me decsripe my business?
+ok
+each product has many benfits ok?
+ok
+i want show the benfits of selected product in the list view ok?
+
+
+my quedtion
+is
+you want to show name only
+there is two column in grid
+not the two column
+ok
+then?
+i'm not getting you what you need
+TOB is related to another model ok?
+ok
+then
+YOU WANT TO SHOW WHOLE RECORD OF THAT FIELD ?
+yes
+not oissubke
+just thingk
+how you wdisplay recor in single cell
+is this logical thing
+i agreee not in same column
+i want make columns depend on number of benfits
+many columns you add ?
+yes depend on number of benfits the
+ how many ?
+ number of benfits product have
+ not possible
+ ok what the best solution for you?
+
+create compute function for showing like name of benifites
+then
+?
+there is no method to show the benfits of product in the same line in tree ?
+i'm talking about that i am not sure what you are getting
+i can make a button to show TOB is that acceptable?
+wht button ?
+in proposal view to show me the list
+
+i'm not sure what you needwant
+i' can't get your requirement
+simply i want for each product i can see the TOB for it
+
+
+need full detail
+how you like to see
+what are information like to see
+where
+how ?
+
+show me that button method
+no method i wrote
+i found alot but i can not uderstand
+show mw button on xml
+oprn car.object mode;
+
+create a tree for that model
+ok
+but not editable
+do you have a form view for that ?
+or you
+
+ok let me collect my requirement and call you
+ok
+thanks in advance
+or you  want to update on tree view ?
+i want to show me the form view
+ok.
+do you have a form view?
+not
+
+then write it first
+ok i have a form
+hi
+
+hi
+are you getting a solution of the proplenm yestr
+not got chavce tp llok into it
+yeasterday i have update something and remote connection closed
+after have you tested ?
+yes i test it but it still not working
+ok let try something now
+show me yestarday pudates how work
+
+actual proposals are under each objets
+so when you create we have to add into that object
+
+show me create button code
+python code
+i dont have create button code
+thne how button works
+which one?
+create proposal button
+it just return action
+show me taht
+
+ok dont work wh
+y?
+but what you are trying i not udnerstand
+ok
+on tree view?
+yes
+ok
+what that error?
+where you written objevt_person
+hi
+
+hi
+i have urgent ques
+yes
+ok
+
+
+ok lets start
+ok
+its working right ?
+yes but i want to invisible this field and get its value auto
+auto but based on what ?
+boolean field on the tree
+we will invisible later first just update that many2one record from onchange and let's see what happen
+ok ?
+not
+work
+
+many2one is not updating
+check first
+yes not upadting check that onchange
+
+
+
+hi
+hi
+are you here
+hi
+hhhhhhhhhhhhiiiiiiiiiiiiiiii
+h
+
+i
+
+hi
+ok the first qestion
+update the write function done on press save
+yes
+ok i have a question i want you give me advice on it
+ok
+addons/web/controllers/main.py
+open this file
+
+got the point hows controller works
+?
+ok
+now how can make this request in odoo step by step
+which  request ?
+http
+hi
+yes
+requst to another serverpossible
+
+that not possible?
+yes we acn not use any other servefer url in route
+how odoo interact with other apps
+
+give me an example
+give the story is
+in ecommerce module i have some courses ok?ok
+once i purchase one course sucessfully enroll me to this course in the mobile app to study this course ok?
+ok
+i want to make http request to enroll method to enroll the user
+then you just want to write url like web/user/enroll
+or any other as per your choice
+ubbut you can not give full url
+to access the mob app i will write 167.99.243.240/modle is this true
+if you write modle in route then true
+write modle only
+yes
+how it can acsess the server database
+where you want to acess server databases ?
+once purchase sucessfully
+the web service work
+hi
+hi
+we need api for access any other system
+ok then
+means
+
+
+hi
+\
+ok the first question are you have checked for passing data througth models?
+yes pease tell me
+ok
+
+
+hi
+hi
+let start pls
+ok
+make button then waht
+ok
+create new button in xml and py
+ok
+
+
+let test some thing and ok
+return to you
+
+
+
+hi
+
+hi
+i have an very urgent problem
+yes
+ let me explain
+
+
+ yes
+ in the form of create proposal ok?
+hi
+
+hi
+then ?
+
+hi
+hi
+ok
+i have an issue
+yse tell me
+ok i want to pass data from form to another form ok?
+
+ok
+show me flow
+ok
+i have passed it coorectly but there is a problem in one2many field
+ok
+show me
+ok
+
+
+call me later once you fix
+
+
+ok
+i did the first issue
+yes
+now i have another issue
+yes
+pleaose
+oks
+
+i want to see under crm when you click on crm then where you
+mea
+n
+show me in browser i will explain you
+hi
+hi
+now curroser displayed
+no
+ok i try to slok no prob
+ok
+now have you find solution?
+no
+any solution not onchange
+compute function but i can't trace the code
+which code ?
+trace code
+debug code
+ok you mean the yesterday method that you have written
+yes
+you can debug it now
+show me mthod
+
+
+hi
+
+hi
+ok lets start i have an isssue i want to make button policies in partner relate to policies of that partner ok?ok
+i have created the button and the function that calculate the number of policies related to that partner and its work fine
+bok
+but i can not to connect this customer with his policies search view?
+why? what issue ?
+ok let show you
+
+
+hi
+hi
+
+
+let pls explain the problem ookk
+when getting one2many computed field ok ?
+ok if i try to edit it the editting not saved in database hi ok becuase the editing be in the cash not saved ok?ok
+now show you the code
+ok
+
+
+got it ?
+yes very thanks but i have another issue on this i want the one2many filled when change salesperson field not when i save th rercord
+you can write onchange method
+yes let me try ok ?
+
+(0, 0,  { values }) link to a new record that needs to be created with the given values dictionary
+
+(1, ID, { values }) update the linked record with id = ID (write values on it)
+
+(2, ID) remove and delete the linked record with id = ID (calls unlink on ID, that will delete the object completely, and the link to it as well)
+
+(3, ID) cut the link to the linked record with id = ID (delete the relationship between the two objects but does not delete the target object itself)
+
+(4, ID) link to existing record with id = ID (adds a relationship)
+
+(5) unlink all (like using (3,ID) for all linked records)
+
+(6, 0, [IDs]) replace the list of linked IDs (like using (5) then (4,ID) for each ID in the list of IDs)

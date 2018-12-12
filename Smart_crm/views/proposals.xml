@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="tree_proposal_opp" model="ir.ui.view">
+            <field name="name">proposals_opp_tree</field>
+            <field name="model">proposal.opp.bb</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="Company"/>
+                    <field name="product_pol"/>
+                    <field name="premium"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="form_proposal_opp" model="ir.ui.view">
+            <field name="name">proposals.opp</field>
+            <field name="model">proposal.opp.bb</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="proposal">
+                        <!--<label for="Company"/>-->
+                        <!--<field name="proposal_id"/>-->
+                        <field name="instype" invisible="1"/>
+                        <field name="line" invisible="1"/>
+
+                        <field name="Company"/>
+                        <!--<label for="product_pol"/>-->
+                        <field name="product_pol"/>
+                        <!--<label for="premium"/>-->
+                        <field name="proposal_crm" invisible="1"/>
+                        <field name="show_risks_covers" invisible="1"/>
+                        <field name="test" invisible="1"/>
+                        <field name="group"  invisible="1"/>
+                        <!--<button name="save" string="Generate Proposal" class="oe_highlight" type="object" />-->
+
+                    </group>
+                </form>
+
+            </field>
+        </record>
+
+
+
+        <!--<record model="ir.ui.view" id="Risks_form">-->
+            <!--<field name="name">coverage.line</field>-->
+            <!--<field name="model">coverage.line</field>-->
+             <!--<field name="context">{"default_covers_crm":id}</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form>-->
+                    <!--<group>-->
+                        <!--<field name="proposal_id"/>-->
+                        <!--<field name="risk_id"/>-->
+                        <!--<field name="risk_desc"/>-->
+                        <!--<field name="covers_crm" />-->
+
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,119 @@
+<odoo>
+        <record model="ir.ui.view" id="tree_settle_history_vehicle">
+        <field name="name">tree.settle.history.vehicle</field>
+        <field name="model">settle.history</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Settlements">
+                <field name="claimheader" string="Claim No."/>
+                <field name="risk_id" />
+                <field name="vcar_type"/>
+                <field name="vmotor_cc"/>
+                <field name="vyear_of_made"/>
+                <field name="vmodel"/>
+                <field name="vbrande"/>
+                <field name="coverage"/>
+                <field name="settle_amount"/>
+                <field name="settle_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="pivot_settle_history_vehicle">
+        <field name="name">pivot.settle.history.vehicle</field>
+        <field name="model">settle.history</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <pivot string="Timesheet">
+                <field name="claimheader" string="Claim No." type="row"/>
+                <field name="risk_id" type="row"/>
+                <field name="coverage" type="col"/>
+                <field name="status" type="col"/>
+                <field name="settle_date" interval="year" type="col"/>
+
+            </pivot>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_settlement_vehicle">
+         <field name="name">Vehicle Settlement</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">settle.history</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form,pivot</field>
+         <field name='domain'>[('risk_type','=','vehicle')]</field>
+         <field name="context">{'create':False,'edit':False}</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_settlement_vehicle_tree">
+         <field name="sequence" eval="1"/>
+         <field name="view_mode">tree</field>
+         <field name="view_id" ref="tree_settle_history_vehicle"/>
+         <field name="act_window_id" ref="action_settlement_vehicle"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_settlement_vehicle_pivot">
+         <field name="sequence" eval="1"/>
+         <field name="view_mode">pivot</field>
+         <field name="view_id" ref="pivot_settle_history_vehicle"/>
+         <field name="act_window_id" ref="action_settlement_vehicle"/>
+    </record>
+
+    <record model="ir.ui.view" id="tree_settle_history_person">
+        <field name="name">tree.settle.history.person</field>
+        <field name="model">settle.history</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Person Settlements">
+                <field name="claimheader" string="Claim No."/>
+                <field name="risk_id" />
+                <field name="pname"/>
+                <field name="p_birthday"/>
+                <field name="pjob"/>
+                <field name="coverage"/>
+                <field name="settle_amount"/>
+                <field name="settle_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_settlement_person">
+         <field name="name">Person Settlement</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">settle.history</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form,pivot</field>
+         <field name="view_id" ref="tree_settle_history_person"/>
+         <field name='domain'>[('risk_type','=','person')]</field>
+         <field name="context">{'create':False,'edit':False}</field>
+    </record>
+
+    <record model="ir.ui.view" id="tree_settle_history_cargo">
+        <field name="name">tree.settle.history.cargo</field>
+        <field name="model">settle.history</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Cargo Settlements">
+                <field name="claimheader" string="Claim No."/>
+                <field name="risk_id" />
+                <field name="cfrom"/>
+                <field name="cto"/>
+                <field name="ctype"/>
+                <field name="cweight"/>
+                <field name="coverage"/>
+                <field name="settle_amount"/>
+                <field name="settle_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_settlement_cargo">
+         <field name="name">Cargo Settlement</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">settle.history</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form,pivot</field>
+         <field name="view_id" ref="tree_settle_history_cargo"/>
+         <field name='domain'>[('risk_type','=','cargo')]</field>
+         <field name="context">{'create':False,'edit':False}</field>
+
+    </record>
+</odoo>

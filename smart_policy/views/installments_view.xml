@@ -1,0 +1,76 @@
+<odoo>
+    <record model="ir.ui.view" id="tree_installments_line">
+        <field name="name">tree.Installments</field>
+        <field name="model">installment.installment</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Idea list">
+                <field name="policy_number"/>
+                <field name="ins_type"/>
+                <field name="lob"/>
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="insurer"/>
+                <!--<field name="ins_product"/>-->
+                <field name="customer_pay_check"/>
+                <field name="insurer_delv_check"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="form_installments_line">
+        <field name="name">form.installments</field>
+        <field name="model">installment.installment</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Idea form">
+                <group string="Installment Information">
+                    <group>
+                        <field name="date"/>
+                        <field name="amount"/>
+                        <field name="state" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="insurer"/>
+                        <!--<field name="ins_product"/>-->
+                        <field name="customer"/>
+                        <field name="policy_number"/>
+                        <field name="ins_type"/>
+                        <field name="lob"/>
+                        <field name="method_type" invisible="1"/>
+                    </group>
+                </group>
+                <group string="Collection  Information">
+                    <group>
+                        <field name="pay_customer"/>
+                        <field name="pay_date" attrs="{'invisible': [('pay_customer', '!=', True)]}"/>
+                        <field name="pay_method" attrs="{'invisible': [('pay_customer', '!=', True)]}"/>
+                        <field name="check_details" attrs="{'invisible': [('method_type', '!=', 'cash')]}"/>
+                        <field name="recp_No" attrs="{'invisible': [('method_type', '!=', 'cash')]}"/>
+
+                    </group>
+                    <group>
+                        <field name="delv_insurer" />
+                        <field name="delv_date_ins" attrs="{'invisible': [('delv_insurer', '!=', True)]}"/>
+                        <field name="delv_method_ins" attrs="{'invisible': [('delv_insurer', '!=', True)]}"/>
+                        <field name="check_details_delv" attrs="{'invisible': [('delv_method_ins', '!=', 'cash')]}"/>
+                        <field name="recp_No_delv" attrs="{'invisible': [('delv_method_ins', '!=', 'cash')]}"/>
+                        <!--<field name="pay_method_ins"/>-->
+                    </group>
+                </group>
+
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="installments_line_action">
+        <field name="name">Installments</field>
+        <field name="res_model">installment.installment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create the Installment
+            </p>
+        </field>
+    </record>
+</odoo>

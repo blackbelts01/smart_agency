@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <template id="crm_report_document">
+            <t t-call="web.html_container">
+             <t t-call="web.external_layout">
+            <div class="page">
+                <img src='/crm__black_belts/static/src/image/1.jpeg' style="max-height: 45px;"/>
+            <div class="oe_structure">
+                 <t t-foreach="docs" t-as="doc">
+                 <div>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Customer</th>
+                                <th>Expected Premium in currency</th>
+                                <th>Expected Premium in company currency</th>
+                                <th>Propapility</th>
+                                <th>Sales Person</th>
+                                <th>Opportunity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td><span t-field="doc.name" /></td>
+                            <td><span t-field="doc.partner_id" /></td>
+                            <td><span t-field="doc.ammount" /></td>
+                            <td><span t-field="doc.planned_revenue" /></td>
+                            <td><span t-field="doc.probability" /></td>
+                            <td><span t-field="doc.user_id" /></td>
+                            <td><span t-field="doc.oppor_type" /></td>
+                        </tbody>
+                    </table>
+                 </div>
+              </t>
+    </div>
+</div>
+</t>
+</t>
+
+</template>
+    </data>
+</odoo>

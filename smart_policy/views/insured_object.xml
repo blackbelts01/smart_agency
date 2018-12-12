@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="my_view_for_person_risks_tree" model="ir.ui.view">
+            <field name="name">New risks</field>
+            <field name="model">policy.risk</field>
+            <field name="arch" type="xml">
+                <tree string="my_tree_for_person">
+                    <field name="name"/>
+                    <field name="DOB"/>
+                    <field name="job"/>
+                    <field name="policy_risk_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_for_insured_Person" model="ir.actions.act_window">
+            <field name="name">Person Risks</field>
+            <field name="res_model">policy.risk</field>
+            <field name="view_mode">tree,graph,search</field>
+            <field name="view_type">form</field>
+             <field name="view_id" ref="my_view_for_person_risks_tree"/>
+            <field name='domain'>[('test','=', 'person')]</field>
+            <!--<field name="context">{'create': False}</field>-->
+        </record>
+    </data>
+</odoo>
